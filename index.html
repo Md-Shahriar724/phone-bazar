@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.9.3/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <header>
+      <h1 class="text-4xl my-6 font-bold  text-center">Phone Bazar</h1>
+    </header>
+    <main class="w-5/6 mx-auto">
+        <!-- input field -->
+        <div class="p-4 bg-gray-200">
+            <input id="search-input" type="text" placeholder="Search...." class="input input-bordered input-md w-full max-w-xs p-4 bg-slate-100 ml-10" />
+            <button  onclick="handleSearch()" class="btn btn-success">Search</button>
+        </div>
+
+        <!-- search result phone -->
+      <section class=" ">
+
+        <!-- loading spinner -->
+        <div  id="loading-spinner" class="text-center my-36 hidden">
+            <span class="loading loading-spinner text-success loading-lg"></span>
+        </div>
+        <!-- all phones -->
+        <div id="phone-container" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center ">
+          
+        </div>
+      </section>
+      <!-- show more button  -->
+      <div class="text-center">
+        <button  id="show-more" class="btn btn-success hidden ">Show All</button>
+      </div>
+    </main>
+    <footer></footer>
+
+    <!-- script  -->
+
+    <script src="phone.js"></script>
+  </body>
+</html>
