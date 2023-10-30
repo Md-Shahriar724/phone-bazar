@@ -1,27 +1,34 @@
-const loadphone = async (searchdata) => {
+const loadphone = async (searchdata, isShowall ) => {
   const url = ` https://openapi.programming-hero.com/api/phones?search=${searchdata}`;
   const res = await fetch(url);
   const data = await res.json();
   const phones = data.data;
-  displayPhones(phones);
+  displayPhones(phones, isShowall);
 };
-const displayPhones = (phones) => {
+const displayPhones = (phones, isShowall) => {
     // 1: get the location
     const phonecontainer = document.getElementById('phone-container')
     // clear container
     phonecontainer.textContent = '';
+
+
+   
     // for displaying more phone adding show more buddon
-    const showbutton =document.getElementById('show-more') 
-    if(phones.length>12){
+    const showbutton =document.getElementById('show-more');
+
+    if(phones.length > 12 ){
         showbutton.classList.remove('hidden')
     }
     else{
         showbutton.classList.add('hidden')
     }
 
+    // console.log('is Show all', isShowall)
     // display only first  12 phone
-
-    phones = phones.slice(0, 12)
+    if(!isShowall){
+      phones = phones.slice(0, 12)
+    }
+    
 
 
   phones.forEach((phone) => {
@@ -56,12 +63,12 @@ const displayPhones = (phones) => {
   toggleLoadingSpinner(false)
 };
 
-const handleSearch = () =>{
+const handleSearch = ( isShowall) =>{
     toggleLoadingSpinner(true)
     console.log('searching')
     const inputText = document.getElementById('search-input');
     const inputData = inputText.value;
-    loadphone(inputData)
+    loadphone(inputData, isShowall)
 }
 
 const toggleLoadingSpinner = (isloading) =>{
@@ -77,6 +84,6 @@ const toggleLoadingSpinner = (isloading) =>{
 // handle show all
 
 const handleShowAll  = () =>{
-    const showbutton = documet.getElementById('show-more')
-    
+    // const showbutton = documet.getElementById('show-more')
+    handleSearch(true)
 }
